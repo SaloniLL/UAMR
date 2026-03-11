@@ -30,15 +30,15 @@ jobs:
         env:
           BINANCE_API_KEY: ${{secrets.BINANCE_API_KEY}}
           BINANCE_API_SECRET: ${{secrets.BINANCE_API_SECRET}}
-          USE_TESTNET: ${{secrets.USE_TESTNET}}
+          USE_TESTNET: ${{vars.USE_TESTNET}}
           TELEGRAM_BOT_TOKEN: ${{secrets.TELEGRAM_BOT_TOKEN}}
           TELEGRAM_CHAT_ID: ${{secrets.TELEGRAM_CHAT_ID}}
-          TRADING_SYMBOL: ${{secrets.TRADING_SYMBOL}}
-          TIMEFRAME: ${{secrets.TIMEFRAME}}
-          RISK_PER_TRADE: ${{secrets.RISK_PER_TRADE}}
-          ATR_PERIOD: ${{secrets.ATR_PERIOD}}
-          ATR_MULTIPLIER: ${{secrets.ATR_MULTIPLIER}}
-          MIN_UA_VOLUME_PER_SIDE: ${{secrets.MIN_UA_VOLUME_PER_SIDE}}
-          MIN_UA_TOTAL_VOLUME: ${{secrets.MIN_UA_TOTAL_VOLUME }}
-          HEARTBEAT_INTERVAL_HOURS: ${{secrets.HEARTBEAT_INTERVAL_HOURS}}
+          TRADING_SYMBOL: ${{vars.TRADING_SYMBOL}}
+          TIMEFRAME: ${{vars.TIMEFRAME}}
+          RISK_PER_TRADE: ${{vars.RISK_PER_TRADE}}
+          ATR_PERIOD: ${{vars.ATR_PERIOD}}
+          ATR_MULTIPLIER: ${{vars.ATR_MULTIPLIER}}
+          MIN_UA_VOLUME_PER_SIDE: ${{vars.MIN_UA_VOLUME_PER_SIDE}}
+          MIN_UA_TOTAL_VOLUME: ${{vars.MIN_UA_TOTAL_VOLUME }}
+          HEARTBEAT_INTERVAL_HOURS: ${{vars.HEARTBEAT_INTERVAL_HOURS}}
         run: python main.py
