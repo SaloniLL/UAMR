@@ -1,0 +1,44 @@
+name: UA Trading Bot
+
+on:
+  schedule:
+    # Runs every 15 minutes
+    - cron: '0, 15, 30, 45 * * * *'
+  
+  # Allows manual triggering
+  workflow_dispatch:
+
+jobs:
+  trade:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Trading Bot
+        env:
+          BINANCE_API_KEY: ${{ secrets.BINANCE_API_KEY }}
+          BINANCE_API_SECRET: ${{ secrets.BINANCE_API_SECRET }}
+          USE_TESTNET: ${{ secrets.USE_TESTNET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TRADING_SYMBOL: ${{ secrets.TRADING_SYMBOL }}
+          TIMEFRAME: ${{ secrets.TIMEFRAME }}
+          RISK_PER_TRADE: ${{ secrets.RISK_PER_TRADE }}
+          ATR_PERIOD: ${{ secrets.ATR_PERIOD }}
+          ATR_MULTIPLIER: ${{ secrets.ATR_MULTIPLIER }}
+          MIN_UA_VOLUME_PER_SIDE: ${{ secrets.MIN_UA_VOLUME_PER_SIDE }}
+          MIN_UA_TOTAL_VOLUME: ${{ secrets.MIN_UA_TOTAL_VOLUME }}
+          HEARTBEAT_INTERVAL_HOURS: ${{ secrets.HEARTBEAT_INTERVAL_HOURS }}
+        run: python main.py
